@@ -1,21 +1,22 @@
 pipeline{
   agent { label 'ubuntu'}
+  options { buildDiscarder(logRotator(numToKeepStr: '5'))}
   parameters {
-    booleanParam(name: 'api1', defaultValue: false, description: '')
-    booleanParam(name: 'api2', defaultValue: false, description: '')
-    booleanParam(name: 'api3', defaultValue: false, description: '')
+    booleanParam(name: 'firstapi', defaultValue: false, description: '')
+    booleanParam(name: 'secondapi', defaultValue: false, description: '')
+    booleanParam(name: 'thirdapi', defaultValue: false, description: '')
   }
   stages{
     stage('Deploy APIs'){
       steps{
         script{
-          if (params.api1){
+          if (params.firstapi){
             build wait: false, job: 'mule/first-api'
           }
-          if (params.api2){
+          if (params.secondapi){
             build wait: false, job: 'mule/second-api'
           }
-          if (params.api3){
+          if (params.thirdapi){
             build wait: false, job: 'mule/third-api'
           }
         }
