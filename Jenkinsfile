@@ -1,5 +1,5 @@
 pipeline{
-  agent { label 'ubuntu'}
+  agent any
   options { buildDiscarder(logRotator(numToKeepStr: '5'))}
   parameters {
     booleanParam(name: 'firstapi', defaultValue: false, description: '')
