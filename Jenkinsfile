@@ -2,6 +2,14 @@ pipeline{
   agent { label 'ubuntu'}
   options { buildDiscarder(logRotator(numToKeepStr: '5'))}
   parameters {
+    choice(choices: ['GSDEV', 'GSUAT', 'GSPRD'], name:'env', description: 'Environment to deploy')
+    choice(choices: ['us-east-2', 'us-east-1'], name: 'region')
+    gitParameter(
+      branchFilter: 'origin/(.*)',
+      defaultValue: 'master',
+      name: 'BRANCH',
+      type: 'PT_BRANCH'
+    )
     booleanParam(name: 'firstapi', defaultValue: false, description: '')
     booleanParam(name: 'secondapi', defaultValue: false, description: '')
     booleanParam(name: 'thirdapi', defaultValue: false, description: '')
