@@ -21,25 +21,43 @@ pipeline{
       steps{
         script{
           if (params.firstapi){
-            build wait: false, 
-                  propagate: false, 
-                  job: '/mule/first-api', 
+            build wait: false, propagate: false, job: '/mule/first-api', 
                   parameters: [
                     string(name: 'env', value: 'GSDEV'), 
                     string(name: 'region', value: 'us-east-2'), 
                     gitParameter(name: 'BRANCH', value: 'master')]
           }
           if (params.secondapi){
-            build wait: false, job: 'mule/second-api'
+            build wait: false, job: 'mule/second-api',
+                  parameters: [
+                    string(name: 'env', value: 'GSDEV'),
+                    string(name: 'env', value: 'us-east-2'),
+                    gitParameter(name: 'BRANCH', value: 'master')
+                  ]
           }
           if (params.thirdapi){
-            build wait: false, job: 'mule/third-api'
+            build wait: false, job: 'mule/third-api',
+                  parameters: [
+                    string(name: 'env', value: 'GSDEV'),
+                    string(name: 'env', value: 'us-east-2'),
+                    gitParameter(name: 'BRANCH', value: 'master')
+                  ]
           }
           if (params.fourthapi){
-            build wait: false, job: 'mule/fourth-api'
+            build wait: false, job: 'mule/fourth-api',
+                  parameters: [
+                    string(name: 'env', value: 'GSDEV'),
+                    string(name: 'env', value: 'us-east-2'),
+                    gitParameter(name: 'BRANCH', value: 'master')
+                  ]
           }
           if (params.fifthapi){
-            build wait: false, job: 'mule/fifth-api'
+            build wait: false, job: 'mule/fifth-api',
+                  parameters: [
+                    string(name: 'env', value: 'GSDEV'),
+                    string(name: 'env', value: 'us-east-2'),
+                    gitParameter(name: 'BRANCH', value: 'master')
+                  ]
           }
         }
       }
