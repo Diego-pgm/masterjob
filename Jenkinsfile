@@ -23,9 +23,9 @@ pipeline{
           if (params.firstapi){
             build wait: false, propagate: false, job: '/mule/first-api', 
                   parameters: [
-                    string(name: 'env', value: 'GSDEV'), 
-                    string(name: 'region', value: 'us-east-2'), 
-                    gitParameter(name: 'BRANCH', value: 'master')]
+                    string(name: 'env', value: "${params.env}"), 
+                    string(name: 'region', value: "${}"), 
+                    gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]
           }
           if (params.secondapi){
             build wait: false, job: 'mule/second-api',
