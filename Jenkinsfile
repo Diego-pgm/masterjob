@@ -21,44 +21,15 @@ pipeline{
       steps{
         script{
           if (params.firstapi){
-            build wait: false, propagate: false, job: '/mule/first-api', 
-                  parameters: [
-                    string(name: 'env', value: "${params.env}"), 
-                    string(name: 'region', value: "${params.region}"), 
-                    gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]
-          }
+            build wait: false, propagate: false, job: '/mule/first-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
           if (params.secondapi){
-            build wait: false, job: 'mule/second-api',
-                  parameters: [
-                    string(name: 'env', value: 'GSDEV'),
-                    string(name: 'env', value: 'us-east-2'),
-                    gitParameter(name: 'BRANCH', value: 'master')
-                  ]
-          }
+            build wait: false, propagate: false, job: 'mule/second-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
           if (params.thirdapi){
-            build wait: false, job: 'mule/third-api',
-                  parameters: [
-                    string(name: 'env', value: 'GSDEV'),
-                    string(name: 'env', value: 'us-east-2'),
-                    gitParameter(name: 'BRANCH', value: 'master')
-                  ]
-          }
+            build wait: false, propagate: false, job: 'mule/third-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
           if (params.fourthapi){
-            build wait: false, job: 'mule/fourth-api',
-                  parameters: [
-                    string(name: 'env', value: 'GSDEV'),
-                    string(name: 'env', value: 'us-east-2'),
-                    gitParameter(name: 'BRANCH', value: 'master')
-                  ]
-          }
+            build wait: false, propagate: false, job: 'mule/fourth-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
           if (params.fifthapi){
-            build wait: false, job: 'mule/fifth-api',
-                  parameters: [
-                    string(name: 'env', value: 'GSDEV'),
-                    string(name: 'env', value: 'us-east-2'),
-                    gitParameter(name: 'BRANCH', value: 'master')
-                  ]
-          }
+            build wait: false, propagate: false, job: 'mule/fifth- api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
         }
       }
     }
