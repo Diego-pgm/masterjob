@@ -29,7 +29,7 @@ pipeline{
           if (params.fourthapi){
             build wait: false, propagate: false, job: 'mule/fourth-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
           if (params.fifthapi){
-            build wait: false, propagate: false, job: 'mule/fifth- api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
+            build wait: false, propagate: false, job: 'mule/fifth-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
         }
       }
     }
