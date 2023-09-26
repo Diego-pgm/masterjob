@@ -17,19 +17,27 @@ pipeline{
     booleanParam(name: 'fifthapi', defaultValue: false, description: '')
   }
   stages{
+    stage('Prepare'){
+      currentBuild.displayName = "${params.env}-${params.BRANCH}-${BUILD_NUMBER}"
+      currentUser = currentBuild.getBuildCauses()[0].userId
+      echo "Current User: ${currentUser}"
+      if (!(currentUser ==~ /(dperez)/)){
+        error "User ${currentUser} is not allowed to deploy"
+      }
+    }
     stage('Deploy APIs'){
       steps{
         script{
           if (params.firstapi){
-            build wait: false, propagate: false, job: '/mule/first-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
+            build wait: false, propagate: false, job: '/mule/first-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}"), string(name: 'currentUser', value: "${params.env}")]}
           if (params.secondapi){
-            build wait: false, propagate: false, job: 'mule/second-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
+            build wait: false, propagate: false, job: 'mule/second-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}"), string(name: 'currentUser', value: "${params.env}")]}
           if (params.thirdapi){
-            build wait: false, propagate: false, job: 'mule/third-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
+            build wait: false, propagate: false, job: 'mule/third-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}"), string(name: 'currentUser', value: "${params.env}")]}
           if (params.fourthapi){
-            build wait: false, propagate: false, job: 'mule/fourth-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
+            build wait: false, propagate: false, job: 'mule/fourth-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}"), string(name: 'currentUser', value: "${params.env}")]}
           if (params.fifthapi){
-            build wait: false, propagate: false, job: 'mule/fifth-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}")]}
+            build wait: false, propagate: false, job: 'mule/fifth-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}"), string(name: 'currentUser', value: "${params.env}")]}
         }
       }
     }
