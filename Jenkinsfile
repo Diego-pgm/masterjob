@@ -33,7 +33,7 @@ pipeline{
       steps{
         script{
           if (params.firstapi){
-            build wait: false, propagate: false, job: '/mule/first-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}"), string(name: 'currentUser', value: "${params.env}")]}
+            build wait: false, propagate: false, job: '/mule/first-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}"), string(name: 'currentUser', value: "${currentUser}")]}
           if (params.secondapi){
             build wait: false, propagate: false, job: 'mule/second-api', parameters: [string(name: 'env', value: "${params.env}"), string(name: 'region', value: "${params.region}"), gitParameter(name: 'BRANCH', value: "${params.BRANCH}"), string(name: 'currentUser', value: "${params.env}")]}
           if (params.thirdapi){
