@@ -18,11 +18,15 @@ pipeline{
   }
   stages{
     stage('Prepare'){
-      currentBuild.displayName = "${params.env}-${params.BRANCH}-${BUILD_NUMBER}"
-      currentUser = currentBuild.getBuildCauses()[0].userId
-      echo "Current User: ${currentUser}"
-      if (!(currentUser ==~ /(dperez)/)){
-        error "User ${currentUser} is not allowed to deploy"
+      steps{
+        script{
+          currentBuild.displayName = "${params.env}-${params.BRANCH}-${BUILD_NUMBER}"
+          currentUser = currentBuild.getBuildCauses()[0].userId
+          echo "Current User: ${currentUser}"
+          if (!(currentUser ==~ /(dperez)/)){
+            error "User ${currentUser} is not allowed to deploy"
+          }
+        }
       }
     }
     stage('Deploy APIs'){
