@@ -32,11 +32,11 @@ pipeline{
     }
     stage('test'){
         steps{
-          def jobPath = "mule/first-api"
-          def parameters = [
-            "${params.env}"
-            "${params.region}"
-            "${params.BRANCH}"
+            def jobPath = "mule/first-api"
+            def parameters = [
+              def env = "${params.env}"
+              def region = "${params.region}"
+              def BRANCH = "${params.BRANCH}"
           ]
           def triggeredBuild = runJob(jobPath, parameters)
           println("Triggered build number: ${triggeredBuild?.number}")
