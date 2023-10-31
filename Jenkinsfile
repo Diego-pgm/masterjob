@@ -1,5 +1,4 @@
-#!/usr/bin/env groovy
-@Library('shared_library')_ 
+@Library('shared_library@master')_ 
 
 pipeline{
   agent { label 'ubuntu'}
