@@ -1,5 +1,3 @@
-@Library('shared_library') _
-
 pipeline{
   agent { label 'ubuntu'}
   options { buildDiscarder(logRotator(numToKeepStr: '5'))}
