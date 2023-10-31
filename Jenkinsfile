@@ -1,4 +1,6 @@
-@Library('shared_library@master')_ 
+@Library('shared_library@master')
+
+import com.mycorp.pipeline.somelib.sayHello
 
 pipeline{
   agent { label 'ubuntu'}
@@ -32,7 +34,7 @@ pipeline{
     }
     stage('test'){
         steps{
-           sayHello 'Diego'
+           sayHello('Diego')
         }
     }
   }
