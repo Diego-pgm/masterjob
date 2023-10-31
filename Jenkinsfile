@@ -35,9 +35,9 @@ pipeline{
           script{
             def jobPath = "mule/first-api"
             def parameters = [
-              "${params.env}"
-              "${params.region}"
-              "${params.BRANCH}"
+              def env = "${params.env}",
+              def regiom = "${params.region}"
+              def BRANCH = "${params.BRANCH}"
             ]
             def triggeredBuild = runJob(jobPath, parameters)
             println("Triggered build number: ${triggeredBuild?.number}")
