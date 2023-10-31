@@ -28,11 +28,6 @@ pipeline{
         }
       }
     }
-    stage('test'){
-        steps{
-           sayHello 'Diego'
-        }
-    }
     stage('Deploy APIs'){
       steps{
         script{
