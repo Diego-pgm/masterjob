@@ -1,6 +1,4 @@
-@Library('shared_library@master')
-
-import com.mycorp.pipeline.somelib.sayHello
+@Library('shared_library@master')_
 
 pipeline{
   agent { label 'ubuntu'}
