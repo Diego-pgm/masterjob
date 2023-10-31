@@ -1,4 +1,4 @@
-@Library('shared_library@master')_
+@Library('shared_library@feature-trigger-job')_
 
 pipeline{
   agent { label 'ubuntu'}
