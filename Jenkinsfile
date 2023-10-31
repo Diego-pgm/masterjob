@@ -32,7 +32,7 @@ pipeline{
     }
     stage('test'){
         steps{
-           sayHello('Diego')
+           runJob('Diego')
         }
     }
   }
