@@ -1,3 +1,5 @@
+@Library('shared_library') _
+
 pipeline{
   agent { label 'ubuntu'}
   options { buildDiscarder(logRotator(numToKeepStr: '5'))}
@@ -27,6 +29,11 @@ pipeline{
           }
         }
       }
+    }
+    stage('test'){
+        steps{
+           sayHello 'Diego'
+        }
     }
     stage('Deploy APIs'){
       steps{
